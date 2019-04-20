@@ -27,7 +27,7 @@ class StoreContactRequest extends FormRequest
             'first_name'   => 'required|min:3|max:255',
             'last_name'    => 'max:255',
             'email'        => 'nullable|regex:/\S+@\S+\.\S+/i|max:255',
-            'phone_number' => 'string|min:3|max:255',
+            'phone_number' => 'nullable|string|max:255',
         ];
     }
 }
