@@ -64,3 +64,11 @@
         <a href="{{ url("contacts") }}" class="btn btn-primary">Close</a>
     </form>
 @stop
+
+@push('scripts')
+    <script src="{{asset('js/intltelinput.js')}}"></script>
+@endpush
+
+@push('stylesheets')
+    <link rel="stylesheet" href="{{ asset('css/intltelinput.css') }}">
+@endpush

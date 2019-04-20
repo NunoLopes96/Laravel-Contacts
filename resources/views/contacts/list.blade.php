@@ -17,9 +17,8 @@
                     <b>{{ $contact->first_name }} {{ $contact->last_name }}</b> <small>({{ $contact->phone_number }})</small>
                 </div>
                 <form method="POST" action="{{ url("contacts/{$contact->id}") }}" style="display: inline">
-                    @csrf
                     @method('DELETE')
-
+                    @csrf
                     <button class="btn btn-outline-danger float-right mx-2">
                         <i class="fa fa-trash"></i>
                     </button>

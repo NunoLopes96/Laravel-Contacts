@@ -61,7 +61,15 @@
                    value="{{ old('phone_number') ?? $contact->phone_number }}" disabled>
         </div>
     </div>
-    <a href="{{ url("contacts/{$contact->id}/edit") }}" class="btn btn-warning">Edit
-    </a>
+    <a href="{{ url("contacts/{$contact->id}/edit") }}" class="btn btn-warning">Edit</a>
     <button type="submit" class="btn btn-danger">Delete</button>
 @stop
+
+@push('scripts')
+    <script src="{{asset('js/intltelinput.js')}}"></script>
+@endpush
+
+@push('stylesheets')
+    <link rel="stylesheet" href="{{ asset('css/intltelinput.css') }}">
+@endpush
+
