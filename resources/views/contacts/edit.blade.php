@@ -62,5 +62,6 @@
             </div>
         </div>
         <button type="submit" class="btn btn-success">Update</button>
+        <a href="{{ url("contacts") }}" class="btn btn-primary">Close</a>
     </form>
 @stop

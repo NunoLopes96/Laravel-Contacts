@@ -46,7 +46,8 @@
                    name="email"
                    id="exampleInputEmail1"
                    placeholder="Enter email"
-                   pattern="\S+@\S+\.\S+">
+                   pattern="\S+@\S+\.\S+"
+                   value="{{ old('email') }}">
         </div>
         <div class="form-group">
             <label for="phone">Phone Number</label>
@@ -54,10 +55,12 @@
                 <input type="tel"
                        class="form-control {{$errors->has('phone_number') ? 'is-invalid' : ''}}"
                        name="phone_number"
-                       id="phone">
+                       id="phone"
+                       value="{{ old('phone_number') }}">
             </div>
         </div>
         @csrf
         <button type="submit" class="btn btn-success">Create</button>
+        <a href="{{ url("contacts") }}" class="btn btn-primary">Close</a>
     </form>
 @stop
