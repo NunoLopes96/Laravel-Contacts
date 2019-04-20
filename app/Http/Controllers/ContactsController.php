@@ -45,7 +45,10 @@ class ContactsController extends Controller
     {
         $contact = Contact::create($request->validated());
 
-        return redirect("contacts/{$contact->id}/edit");
+        return redirect("contacts/{$contact->id}/edit")->with(
+            'success',
+            'Contact was created with success.'
+        );
     }
 
     /**
@@ -76,7 +79,10 @@ class ContactsController extends Controller
     {
         $contact->fill($request->validated())->save();
 
-        return redirect('contacts');
+        return redirect("contacts/{$contact->id}/edit")->with(
+            'success',
+            'Contact was updated with success.'
+        );
     }
 
     /**
@@ -90,6 +96,9 @@ class ContactsController extends Controller
     {
         $contact->delete();
 
-        return redirect('contacts');
+        return redirect('contacts')->with(
+            'success',
+            'Contact was deleted with success.'
+        );
     }
 }
