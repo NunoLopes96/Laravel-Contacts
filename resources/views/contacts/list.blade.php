@@ -18,13 +18,13 @@
             <li class="list-group-item">
                 <div class="pull-left">
                     <b>{{ $contact->first_name }} {{ $contact->last_name }}</b>
-                @if($contact->phone_number !== null)
+                @isset($contact->phone_number)
                     <small>({{ $contact->phone_number }})</small>
-                @endif
-                @if($contact->email !== null)
+                @endisset
+                @isset($contact->email)
                     <br>
                     <small>Email: {{$contact->email}}</small>
-                @endif
+                @endisset
                 </div>
                 <form method="POST" action="{{ url("contacts/{$contact->id}") }}" style="display: inline">
                     @method('DELETE')

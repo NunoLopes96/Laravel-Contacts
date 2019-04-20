@@ -13,6 +13,7 @@
                     @yield('breadcrumb')
                 </ol>
             </nav>
+            @include('layouts/alerts')
             @yield('content')
         </div>
         <script src="{{asset('js/app.js')}}"></script>
