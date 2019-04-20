@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreContactRequest;
+use App\Http\Requests\UpdateContactRequest;
 
 class ContactsController extends Controller
 {
@@ -15,7 +16,6 @@ class ContactsController extends Controller
     public function index()
     {
         $contacts = Contact::all();
-
 
         return view('contacts.list', [
             'contacts' => $contacts
@@ -35,56 +35,61 @@ class ContactsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
+     * @todo success message when user created.
      *
-     * @param  int  $id
+     * @param  StoreContactRequest  $request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function store(StoreContactRequest $request)
     {
-        //
+        $contact = Contact::create($request->validated());
+
+        return redirect("contacts/{$contact->id}/edit");
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Contact  $contact
+     *
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Contact $contact)
     {
-        //
+        return view('contacts.edit', [
+            'contact' => $contact
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @todo success message when user was updated.
+     *
+     * @param  UpdateContactRequest  $request
+     * @param  Contact               $contact
+     *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateContactRequest $request, Contact $contact)
     {
-        //
+        $contact->fill($request->validated())->save();
+
+        return redirect('contacts');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Contact  $contact
+     *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+
+        return redirect('contacts');
     }
 }
