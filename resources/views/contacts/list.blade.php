@@ -2,8 +2,11 @@
 
 @section('title', 'Contacts List')
 
+@section('breadcrumb')
+    <li class="breadcrumb-item active" aria-current="page">Contacts</li>
+@endsection
+
 @section('content')
-    <h1>Contacts</h1>
     <div class="clearfix">
         <a href="{{ url('/contacts/create') }}" class="btn btn-lg btn-outline-success float-right my-2">
             <i class="fa fa-plus"></i> Create new contact

@@ -8,6 +8,11 @@
     </head>
     <body>
         <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    @yield('breadcrumb')
+                </ol>
+            </nav>
             @yield('content')
         </div>
         <script src="{{asset('js/app.js')}}"></script>

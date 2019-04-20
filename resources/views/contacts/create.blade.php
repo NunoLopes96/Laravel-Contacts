@@ -2,8 +2,12 @@
 
 @section('title', 'Create New Contact')
 
+@section('breadcrumb')
+    <li class="breadcrumb-item" aria-current="page"><a href="{{ url('contacts') }}">Contacts</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Create</li>
+@endsection
+
 @section('content')
-    <h1>Create New Contact</h1>
     <form method="POST" action="{{ url('contacts') }}">
         @if($errors->any())
         <div class="alert alert-danger alert-dismissible fade show" role="alert">

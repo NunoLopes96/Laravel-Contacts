@@ -2,8 +2,12 @@
 
 @section('title', 'Edit Contact')
 
+@section('breadcrumb')
+    <li class="breadcrumb-item" aria-current="page"><a href="{{ url('contacts') }}">Contacts</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Edit</li>
+@endsection
+
 @section('content')
-<h1>Edit Contact</h1>
 <form method="POST" action="{{ url("contacts/{$contact->id}") }}">
     @method('PUT')
     @if($errors->any())
