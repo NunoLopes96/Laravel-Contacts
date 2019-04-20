@@ -14,16 +14,23 @@
         @foreach($contacts as $contact)
             <li class="list-group-item">
                 <div class="pull-left">
-                    <b>{{ $contact->first_name }} {{ $contact->last_name }}</b> <small>({{ $contact->phone_number }})</small>
+                    <b>{{ $contact->first_name }} {{ $contact->last_name }}</b>
+                @if($contact->phone_number !== null)
+                    <small>({{ $contact->phone_number }})</small>
+                @endif
+                @if($contact->email !== null)
+                    <br>
+                    <small>Email: {{$contact->email}}</small>
+                @endif
                 </div>
                 <form method="POST" action="{{ url("contacts/{$contact->id}") }}" style="display: inline">
                     @method('DELETE')
                     @csrf
-                    <button class="btn btn-outline-danger float-right mx-2">
+                    <button class="btn btn-lg btn-outline-danger float-right mx-2">
                         <i class="fa fa-trash"></i>
                     </button>
                 </form>
-                <a href="{{ url("contacts/{$contact->id}/edit") }}" class="btn btn-outline-warning float-right mx-2">
+                <a class="btn btn-lg btn-outline-warning float-right mx-2" href="{{ url("contacts/{$contact->id}/edit") }}" >
                     <i class="fa fa-edit"></i>
                 </a>
             </li>
