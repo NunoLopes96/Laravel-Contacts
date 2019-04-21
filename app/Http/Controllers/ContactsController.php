@@ -25,10 +25,8 @@ class ContactsController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::all();
-
         return view('contacts.list', [
-            'contacts' => $contacts
+            'contacts' => auth()->user()->contacts
         ]);
     }
 
@@ -70,6 +68,8 @@ class ContactsController extends Controller
      */
     public function edit(Contact $contact)
     {
+        $this->authorize('save');
+
         return view('contacts.edit', [
             'contact' => $contact
         ]);
@@ -87,6 +87,8 @@ class ContactsController extends Controller
      */
     public function update(UpdateContactRequest $request, Contact $contact)
     {
+        $this->authorize('save');
+
         $contact->fill($request->validated())->save();
 
         return redirect("contacts/{$contact->id}/edit")->with(
@@ -104,6 +106,8 @@ class ContactsController extends Controller
      */
     public function destroy(Contact $contact)
     {
+        $this->authorize('save');
+
         $contact->delete();
 
         return redirect('contacts')->with(
