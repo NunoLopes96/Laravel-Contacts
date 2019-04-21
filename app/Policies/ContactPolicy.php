@@ -11,7 +11,7 @@ class ContactPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view the contact.
+     * Determine whether the user can view/update/delete the contact.
      *
      * @param  \App\User  $user
      * @param  \App\Contact  $contact

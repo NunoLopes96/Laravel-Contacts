@@ -8,6 +8,7 @@
 @endsection
 
 @section('content')
+<?php /* @var App\Contact $contact */ ?>
 <form method="POST" action="{{ url("contacts/{$contact->id}") }}">
     @method('PUT')
     <div class="form-group">

@@ -14,7 +14,8 @@
     </div>
     <div>
         <ul class="list-group">
-        @foreach($contacts as $contact)
+            <?php /* @var App\Contact $contact */ ?>
+            @foreach($contacts as $contact)
             <li class="list-group-item">
                 <div class="pull-left">
                     <b>{{ $contact->first_name }} {{ $contact->last_name }}</b>

@@ -21,7 +21,7 @@ class ContactsController extends Controller
     }
 
     /**
-     * Display the list of contacts for the given user id.
+     * Display the current user's contacts.
      *
      * @return \Illuminate\Http\Response
      */
@@ -35,7 +35,8 @@ class ContactsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $id - ID of the Contact that is going to be edited.
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -78,9 +79,9 @@ class ContactsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified Contact.
      *
-     * @param  Contact  $contact
+     * @param  Contact  $contact - Contact that is going to be edited.
      *
      * @return \Illuminate\Http\Response
      */
@@ -96,10 +97,10 @@ class ContactsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified Contact in storage.
      *
-     * @param  UpdateContactRequest  $request
-     * @param  Contact               $contact
+     * @param  UpdateContactRequest  $request - Request instance with the validated data.
+     * @param  Contact               $contact - Contact that is going to be updated.
      *
      * @return \Illuminate\Http\Response
      */
@@ -120,9 +121,9 @@ class ContactsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified Contact from storage.
      *
-     * @param  Contact  $contact
+     * @param  Contact  $contact - Contact that is going to be destroyed.
      *
      * @return \Illuminate\Http\Response
      */
