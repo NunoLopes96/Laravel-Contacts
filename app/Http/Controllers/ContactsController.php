@@ -31,6 +31,20 @@ class ContactsController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        // There is no show view, only edit,
+        // so if the user tries to show it in the url,
+        // we will redirect it to the edit view.
+        return redirect("contacts/{$id}/edit");
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
