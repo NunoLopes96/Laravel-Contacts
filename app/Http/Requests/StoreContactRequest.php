@@ -7,17 +7,8 @@ use Illuminate\Foundation\Http\FormRequest;
 class StoreContactRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
+     * The rules() method will return an array containing
+     * all the rules to be validated by the Request object.
      *
      * @return array
      */
