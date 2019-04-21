@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
-use App\Http\Requests\StoreContactRequest;
-use App\Http\Requests\UpdateContactRequest;
+use App\Http\Requests\SaveContactRequest;
 
 class ContactsController extends Controller
 {
@@ -58,13 +57,13 @@ class ContactsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created Contact in storage.
      *
-     * @param  StoreContactRequest  $request
+     * @param  SaveContactRequest  $request - Request instance with the validated data.
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreContactRequest $request)
+    public function store(SaveContactRequest $request)
     {
         // Creates the contact, adding the loggedin user id
         // to the record in the ContactObserver.
@@ -99,12 +98,12 @@ class ContactsController extends Controller
     /**
      * Update the specified Contact in storage.
      *
-     * @param  UpdateContactRequest  $request - Request instance with the validated data.
-     * @param  Contact               $contact - Contact that is going to be updated.
+     * @param  SaveContactRequest  $request - Request instance with the validated data.
+     * @param  Contact             $contact - Contact that is going to be updated.
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateContactRequest $request, Contact $contact)
+    public function update(SaveContactRequest $request, Contact $contact)
     {
         // Check if the user can update the contact.
         $this->authorize('save', $contact);

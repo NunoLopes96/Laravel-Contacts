@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreContactRequest extends FormRequest
+class SaveContactRequest extends FormRequest
 {
     /**
      * The rules() method will return an array containing
