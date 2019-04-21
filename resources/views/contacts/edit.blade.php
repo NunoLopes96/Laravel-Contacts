@@ -3,8 +3,12 @@
 @section('title', 'Edit Contact')
 
 @section('breadcrumb')
-    <li class="breadcrumb-item" aria-current="page"><a href="{{ url('contacts') }}">Contacts</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Edit</li>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" aria-current="page"><a href="{{ url('contacts') }}">Contacts</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Edit</li>
+        </ol>
+    </nav>
 @endsection
 
 @section('content')
@@ -16,8 +20,8 @@
         <input type="text"
                class="form-control {{$errors->has('first_name') ? 'is-invalid' : ''}}"
                name="first_name"
-               min="3"
-               max="255"
+               minlength="3"
+               maxlength="255"
                id="first_name"
                placeholder="Enter first name"
                value="{{ old('first_name') ?? $contact->first_name }}"
@@ -28,7 +32,7 @@
         <input type="text"
                class="form-control {{$errors->has('last_name') ? 'is-invalid' : ''}}"
                name="last_name"
-               max="255"
+               maxlength="255"
                id="last_name"
                placeholder="Enter last name"
                value="{{ old('last_name') ?? $contact->last_name }}">

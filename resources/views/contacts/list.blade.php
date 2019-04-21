@@ -3,7 +3,11 @@
 @section('title', 'Contacts List')
 
 @section('breadcrumb')
-    <li class="breadcrumb-item active" aria-current="page">Contacts</li>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Contacts</li>
+        </ol>
+    </nav>
 @endsection
 
 @section('content')

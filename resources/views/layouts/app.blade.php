@@ -71,11 +71,7 @@
         </nav>
 
         <main class="container py-4">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    @yield('breadcrumb')
-                </ol>
-            </nav>
+            @yield('breadcrumb')
             @include('layouts/alerts')
             @yield('content')
         </main>
