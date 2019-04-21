@@ -18,3 +18,5 @@ Route::get('/', function () {
 Route::resource('contacts', 'ContactsController')->except([
     'show'
 ]);
+
+Auth::routes();
