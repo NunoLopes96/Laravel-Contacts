@@ -1,3 +1,29 @@
+<b>Instalation:</b>
+
+Configure the following lines in the `.env` file.
+
+<ul>
+    <li>DB_CONNECTION</li>
+    <li>DB_HOST</li>
+    <li>DB_PORT</li>
+    <li>DB_DATABASE</li>
+    <li>DB_USERNAME</li>
+    <li>DB_PASSWORD</li>
+</ul>
+
+run `php artisan migrate:install`
+<p>Then we need to install dependencies:</p>
+<p>Make sure you have composer and npm installed in your system.</p>
+
+run `npm run prod` (production) or `npm run dev` (development)
+
+run `composer install`
+
+To have a fast server running, without copy/moving files, laravel has a useful command:
+`php artisan serve`
+then you can testing the application in `http://localhost:8000`
+<hr>
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
