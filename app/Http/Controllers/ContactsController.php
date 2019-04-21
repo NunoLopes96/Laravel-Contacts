@@ -68,7 +68,7 @@ class ContactsController extends Controller
      */
     public function edit(Contact $contact)
     {
-        $this->authorize('save');
+        $this->authorize('save', $contact);
 
         return view('contacts.edit', [
             'contact' => $contact
@@ -87,7 +87,7 @@ class ContactsController extends Controller
      */
     public function update(UpdateContactRequest $request, Contact $contact)
     {
-        $this->authorize('save');
+        $this->authorize('save', $contact);
 
         $contact->fill($request->validated())->save();
 
@@ -106,7 +106,7 @@ class ContactsController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        $this->authorize('save');
+        $this->authorize('save', $contact);
 
         $contact->delete();
 
