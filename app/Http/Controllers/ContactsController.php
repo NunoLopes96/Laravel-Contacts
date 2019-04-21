@@ -15,11 +15,13 @@ class ContactsController extends Controller
      */
     public function __construct()
     {
+        // Validate always if there is an user logged in,
+        // if not, redirects the the login page.
         $this->middleware('auth');
     }
 
     /**
-     * Display a listing of the resource.
+     * Display the list of contacts for the given user id.
      *
      * @return \Illuminate\Http\Response
      */
@@ -57,16 +59,18 @@ class ContactsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @todo success message when user created.
-     *
      * @param  StoreContactRequest  $request
      *
      * @return \Illuminate\Http\Response
      */
     public function store(StoreContactRequest $request)
     {
+        // Creates the contact, adding the loggedin user id
+        // to the record in the ContactObserver.
         $contact = Contact::create($request->validated());
 
+        // Redirects to the edit view of the created contact
+        // with a success message.
         return redirect("contacts/{$contact->id}/edit")->with(
             'success',
             'Contact was created with success.'
@@ -82,8 +86,10 @@ class ContactsController extends Controller
      */
     public function edit(Contact $contact)
     {
+        // Check if the user can see/edit the contact.
         $this->authorize('save', $contact);
 
+        // Loads the edit view with the given contact.
         return view('contacts.edit', [
             'contact' => $contact
         ]);
@@ -92,8 +98,6 @@ class ContactsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @todo success message when user was updated.
-     *
      * @param  UpdateContactRequest  $request
      * @param  Contact               $contact
      *
@@ -101,11 +105,15 @@ class ContactsController extends Controller
      */
     public function update(UpdateContactRequest $request, Contact $contact)
     {
+        // Check if the user can update the contact.
         $this->authorize('save', $contact);
 
+        // Update the contact with the validated data,
+        // and save it in the persistence layer.
         $contact->fill($request->validated())->save();
 
-        return redirect("contacts/{$contact->id}/edit")->with(
+        // Redirects to the same view with a success message.
+        return redirect()->back()->with(
             'success',
             'Contact was updated with success.'
         );
@@ -120,11 +128,14 @@ class ContactsController extends Controller
      */
     public function destroy(Contact $contact)
     {
+        // Check if the user can delete the contact.
         $this->authorize('save', $contact);
 
+        // Delete the contact.
         $contact->delete();
 
-        return redirect('contacts')->with(
+        // Redirects to the same view with a success message.
+        return redirect()->back()->with(
             'success',
             'Contact was deleted with success.'
         );
