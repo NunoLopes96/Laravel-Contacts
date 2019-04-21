@@ -14,6 +14,6 @@ class ContactObserver
      */
     public function creating(Contact $contact)
     {
-        $contact->user_id = auth()->id();
+        $contact->setAttribute('user_id', auth()->id());
     }
 }
