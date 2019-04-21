@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="clearfix">
-        <a href="{{ url('/contacts/create') }}" class="btn btn-lg btn-outline-success float-right my-2">
+        <a href="{{ url('/contacts/create') }}" class="btn btn-outline-success float-right my-2">
             <i class="fa fa-plus"></i> Create new contact
         </a>
     </div>
