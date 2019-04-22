@@ -142,4 +142,30 @@ class ProjectTest extends TestCase
             $contact->is($get->viewData('contact')),
             'The contact that is going to be edited is not the pretended.');
     }
+
+    /** @test */
+    function user_only_see_his_contacts()
+    {
+        // Create a contact.
+        $contact = factory(Contact::class)->create();
+
+        // Login with the user of the contact.
+        $this->signIn($contact->user);
+
+        // Create another contact.
+        factory(Contact::class)->create();
+
+        // Get the contact edit request.
+        $get = $this->get("contacts");
+
+        // Performs assertion.
+        $this->assertEquals(
+            1,
+            $get->viewData('contacts')->count(),
+            'There should only exists 1 contact for the signed user.'
+        );
+        $this->assertTrue(
+            $contact->is($get->viewData('contacts')->first()),
+            'Only 1 contact should have been shown for the signed user.');
+    }
 }
