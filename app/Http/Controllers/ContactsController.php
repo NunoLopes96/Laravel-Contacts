@@ -65,9 +65,8 @@ class ContactsController extends Controller
      */
     public function store(SaveContactRequest $request)
     {
-        // Creates the contact, adding the loggedin user id
-        // to the record in the ContactObserver.
-        $contact = Contact::create($request->validated());
+        // Creates the contact for the current user with the validated data.
+        $contact = auth()->user()->contacts()->create($request->validated());
 
         // Redirects to the edit view of the created contact
         // with a success message.

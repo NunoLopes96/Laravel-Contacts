@@ -11,8 +11,7 @@ Configure the following lines in the `.env` file.
     <li>DB_PASSWORD</li>
 </ul>
 
-run `php artisan key:generate`
-run `php artisan migrate:install`
+run `php artisan key:generate` & `php artisan migrate:install`
 <p>Then we need to install dependencies:</p>
 <p>Make sure you have composer and npm installed in your system.</p>
 
