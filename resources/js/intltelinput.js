@@ -1,24 +1,41 @@
 import intlTelInput from 'intl-tel-input/build/js/intlTelInput.min';
 
-document.addEventListener('DOMContentLoaded', function(){
-    var input = document.querySelector("#phone");
-    var iti = intlTelInput(input, {
-        utilsScript: require('intl-tel-input/build/js/utils'),
-        initialCountry: "pt",
-        autoHideDialCode: true,
-        nationalMode: false,
-        formatOnDisplay: true
-    });
+/**
+ * IntlTelInput handling class.
+ *
+ * This uses an external library to validate phone numbers and autoformat them.
+ */
+class IntlTelInput
+{
+    /**
+     * Initializes the IntlTelInput instance.
+     */
+    constructor(form) {
 
-    input.addEventListener("input", () => resetIntlTelInput());
+        this._input = form.querySelector("#phone");
+        this._iti = intlTelInput(this._input, {
+            utilsScript: require('intl-tel-input/build/js/utils'),
+            initialCountry: "pt",
+            autoHideDialCode: true,
+            nationalMode: false,
+            formatOnDisplay: true
+        });
 
-    function resetIntlTelInput() {
-        if (typeof intlTelInputUtils !== 'undefined') { // utils are lazy loaded, so must check
-            let currentText = iti.getNumber(intlTelInputUtils.numberFormat.E164);
-            if (typeof currentText === 'string') { // sometimes the currentText is an object :)
-                iti.setNumber(currentText); // will autoformat because of formatOnDisplay=true
+        this._input.addEventListener("input", () => this.resetIntlTelInput(this._iti));
+    }
+
+    /**
+     * The current auto-format of the library was discontinued, here is a fix
+     */
+    resetIntlTelInput() {
+        if (typeof intlTelInputUtils !== 'undefined') {
+            let currentText = this._iti.getNumber(intlTelInputUtils.numberFormat.E164);
+            if (typeof currentText === 'string') {
+                this._iti.setNumber(currentText);
+                this._input.dispatchEvent(new Event('changed'));
             }
         }
     }
+}
 
-}, false);
+export default IntlTelInput;

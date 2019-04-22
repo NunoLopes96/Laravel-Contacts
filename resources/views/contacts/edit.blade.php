@@ -13,7 +13,7 @@
 
 @section('content')
 <?php /* @var App\Contact $contact */ ?>
-<form method="POST" action="{{ url("contacts/{$contact->id}") }}">
+<form class="contact-form" method="POST" action="{{ url("contacts/{$contact->id}") }}">
     @method('PUT')
     <div class="form-group">
         <label for="first_name">First Name</label>
@@ -64,7 +64,7 @@
 @stop
 
 @push('scripts')
-    <script src="{{asset('js/intltelinput.js')}}"></script>
+    <script src="{{ asset('js/contactform.js') }}"></script>
 @endpush
 
 @push('stylesheets')

@@ -14,7 +14,7 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css');
 
-mix.js('resources/js/intltelinput.js', 'public/js')
+mix.js('resources/js/contactform.js', 'public/js')
     .sass('resources/sass/intltelinput.scss', 'public/css');
 
 mix.js('resources/js/contactlist.js', 'public/js');

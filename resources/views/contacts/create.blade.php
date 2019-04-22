@@ -12,7 +12,7 @@
 @endsection
 
 @section('content')
-    <form method="POST" action="{{ url('contacts') }}">
+    <form class="contact-form" method="POST" action="{{ url('contacts') }}">
         @if($errors->any())
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <ul class="my-0">
