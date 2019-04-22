@@ -2,13 +2,12 @@
 
 namespace Tests\Unit;
 
-use App\Contact;
 use App\User;
 use Illuminate\Support\Collection;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ExampleTest extends TestCase
+class UserTest extends TestCase
 {
     use RefreshDatabase;
 
