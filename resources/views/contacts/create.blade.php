@@ -74,7 +74,7 @@
 @stop
 
 @push('scripts')
-    <script src="{{asset('js/intltelinput.js')}}"></script>
+    <script src="{{asset('js/contactform.js')}}"></script>
 @endpush
 
 @push('stylesheets')

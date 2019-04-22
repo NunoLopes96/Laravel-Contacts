@@ -11,10 +11,10 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+mix.js('resources/js/bootstrap.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css');
 
-mix.js('resources/js/contactform.js', 'public/js')
+mix.js('resources/js/contactform/index.js', 'public/js/contactform.js')
     .sass('resources/sass/intltelinput.scss', 'public/css');
 
-mix.js('resources/js/contactlist.js', 'public/js');
+mix.js('resources/js/contactlist/index.js', 'public/js/contactlist.js');
