@@ -22,6 +22,33 @@ run `composer install`
 To have a fast server running, without copy/moving files, laravel has a useful command:
 `php artisan serve`
 then you can testing the application in `http://localhost:8000`
+
+<b>Features:</b>
+<p>Backend:</p>
+<ul>
+    <li>Each user will have his contacts.</li>
+    <li>Users can't edit/view/update or delete other's contacts.</li>
+    <li>Data is validated in Requests before going to the database, showing error message if the data was invalid.</li>
+    <li>Success messages if a create/update/delete was successful</li>
+    <li>Added Feature and Unit tests.</li>
+</ul>
+
+<p>Frontend:</p>
+<ul>
+    <li>Added breadcrumbs</li>
+    <li>External library added for a verification and adding country code to phone number in real time with auto-format.</li>
+    <li>Validation of the Inputs with HTML5.</li>
+    <li>Confirmation in the List View if the user really wants to delete a contact.</li>
+    <li>Small validation that disables the Create/Update button if there was no changes in the form or it is still empty.</li>
+</ul>
+
+What is missing:
+<ul>
+    <li>Form Validation should still be disabled if the field is invalid.</li>
+    <li>The views/layout structure could be improved.</li>
+    <li>JS tests.</li>
+</ul>
+
 <hr>
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
