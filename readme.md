@@ -1,5 +1,13 @@
 <b>Instalation:</b>
 
+<p>We need to install dependencies first:</p>
+<p>Make sure you have composer and npm installed in your system.</p>
+
+run `composer install` & run `npm install`
+
+Now we need to copy the `.env.example` file and create a new `.env` file.
+(You may use `cp .env.example .env`).
+
 Configure the following lines in the `.env` file.
 
 <ul>
@@ -11,17 +19,13 @@ Configure the following lines in the `.env` file.
     <li>DB_PASSWORD</li>
 </ul>
 
-run `php artisan key:generate` & `php artisan migrate:install`
-<p>Then we need to install dependencies:</p>
-<p>Make sure you have composer and npm installed in your system.</p>
-
 run `npm run prod` (production) or `npm run dev` (development)
 
-run `composer install`
+run `php artisan key:generate` & `php artisan migrate`
 
 To have a fast server running, without copy/moving files, laravel has a useful command:
 `php artisan serve`
-then you can testing the application in `http://localhost:8000`
+then you can testing the application in `http://127.0.0.1:8000` by default.
 
 <b>Features:</b>
 <p>Backend:</p>
