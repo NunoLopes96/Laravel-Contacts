@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
         input.addEventListener('click', (e) => {
 
             // If the user doesn't confirm, prevent to submit and blur the button.
-            if (!confirm('Are you sure you wan\'t to delete this contact?')) {
+            if (!confirm('Are you sure you want to delete this contact?')) {
                 e.preventDefault();
                 input.blur();
             }
