@@ -18,6 +18,15 @@ use Illuminate\Database\Eloquent\Model;
 class Contact extends Model
 {
     /**
+     * The User of the Contact.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array $fillable

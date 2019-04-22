@@ -19,6 +19,6 @@ class ContactPolicy
      */
     public function save(User $user, Contact $contact)
     {
-        return $user->id === $contact->user_id;
+        return $user->is($contact->user);
     }
 }
