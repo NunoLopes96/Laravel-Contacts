@@ -34,7 +34,7 @@
                 <form method="POST" action="{{ url("contacts/{$contact->id}") }}" style="display: inline">
                     @method('DELETE')
                     @csrf
-                    <button class="btn btn-lg btn-outline-danger float-right mx-2">
+                    <button class="btn btn-lg btn-outline-danger float-right mx-2 contact-delete">
                         <i class="fa fa-trash"></i>
                     </button>
                 </form>
@@ -46,3 +46,7 @@
         </ul>
     </div>
 @stop
+
+@push('scripts')
+    <script src="{{asset('js/contactlist.js')}}"></script>
+@endpush
