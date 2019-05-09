@@ -18,3 +18,12 @@ mix.js('resources/js/contactform/index.js', 'public/js/contactform.js')
     .sass('resources/sass/intltelinput.scss', 'public/css');
 
 mix.js('resources/js/contactlist/index.js', 'public/js/contactlist.js');
+
+mix.webpackConfig({
+    output: {
+        chunkFilename: mix.inProduction() ? "js/chunks/[chunkhash].js" : "js/chunks/[name].js",
+    }
+});
+mix.version();
+
+mix.react('resources/js/components/index.jsx', 'public/js/bundle.js');
