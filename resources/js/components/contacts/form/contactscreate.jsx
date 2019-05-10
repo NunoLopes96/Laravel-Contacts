@@ -9,6 +9,9 @@ import { Link, Redirect } from 'react-router-dom'
 import axios from "axios/index";
 import Contact from "./contact";
 
+import Alert from '../../template/alert'
+import If from '../../template/if'
+
 export default class CreateContact extends Contact {
 
     handleSubmit(e) {
@@ -31,18 +34,22 @@ export default class CreateContact extends Contact {
                      pathname: resp.data.redirect,
                      state: {message: resp.data.success}
                  });
-             });
+             })
+            .catch(error => {
+
+                // Send Error to Alert that will process inside.
+                this.setState({...this.state, alert: {...this.state.alert, errors: error.response.data.errors}});
+            });
     }
 
     render() {
         return (
             <main className="container py-4">
-                <div className="alert alert-success alert-dismissible fade show" hidden={this.state.redirect.message !== null} role="alert">
-                    {this.state.alert}
-                    <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+                <Alert
+                    errors={this.state.alert.errors}
+                    message={this.state.alert.message}
+                    handleCloseMessage={() => this.handleCloseMessage()}
+                    handleCloseErrors={() => this.handleCloseErrors()}/>
                 <form onSubmit={(e) => this.handleSubmit(e)} className="contact-form" method="POST">
                     <FirstName
                         field={this.state.contact.first_name}

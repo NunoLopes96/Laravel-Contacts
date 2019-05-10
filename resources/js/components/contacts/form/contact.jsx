@@ -32,7 +32,7 @@ export default class Contact extends Component {
         };
 
         if (this.props.location.state) {
-            this.state.redirect.message = this.props.location.state.message;
+            this.state.alert.message = this.props.location.state.message;
         }
 
         // Saves initial state as JSON.
