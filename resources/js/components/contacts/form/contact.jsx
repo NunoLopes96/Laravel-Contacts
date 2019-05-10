@@ -7,9 +7,9 @@ export default class Contact extends Component {
 
         this.state = {
             isLoading: true,
-            redirect: {
-                url: null,
-                message: ''
+            alert: {
+                message: '',
+                errors: null,
             },
             contact: {
                 first_name:   {
@@ -74,4 +74,12 @@ export default class Contact extends Component {
                       .map(field => contact[field])
                       .some(field => !field.valid);
     };
+
+    handleCloseMessage() {
+        this.setState({...this.state, alert: {...this.state.alert, message: ''}});
+    }
+
+    handleCloseErrors() {
+        this.setState({...this.state, alert: {...this.state.alert, errors: null}});
+    }
 }

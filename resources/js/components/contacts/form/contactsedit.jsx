@@ -64,20 +64,23 @@ export default class EditContact extends Contact {
 
                  this.refresh(data);
 
-                 this.setState({...this.state, redirect: {message: data.success}});
-             });
-    }
+                 this.setState({...this.state, alert: {errors: null, message: data.success}});
+             })
+            .catch(error => {
 
-    handleCloseAlert() {
-        this.setState({...this.state, redirect: {message: ''}});
+                // Send Error to Alert that will process inside.
+                this.setState({...this.state, alert: {...this.state.alert, errors: error.response.data.errors}});
+            });
     }
 
     render() {
         return (
             <main className="container py-4">
                 <Alert
-                    message={this.state.redirect.message}
-                    handleCloseAlert={() => this.handleCloseAlert()}/>
+                    errors={this.state.alert.errors}
+                    message={this.state.alert.message}
+                    handleCloseMessage={() => this.handleCloseMessage()}
+                    handleCloseErrors={() => this.handleCloseErrors()}/>
                 <form onSubmit={(e) => this.handleSubmit(e)} className="contact-form" method="POST">
                     <If test={!this.state.isLoading}>
                         <FirstName
