@@ -46,7 +46,7 @@ export default class ListContacts extends Component {
         return this.state.contacts.map(contact => (
             <li key={contact.id} className="list-group-item">
                 <div className="pull-left">
-                    <b>{contact.first_name}</b>
+                    <b>{contact.first_name} {contact.last_name}</b>
                     <small>({contact.phone_number})</small>
                     <br/>
                     <small>Email: {contact.email}</small>
