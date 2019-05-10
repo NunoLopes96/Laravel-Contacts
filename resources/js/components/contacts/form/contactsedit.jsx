@@ -6,7 +6,9 @@ import FirstName from './fields/FirstName'
 import LastName from './fields/LastName'
 import Email from './fields/Email'
 import PhoneNumber from './fields/PhoneNumber'
+
 import Alert from '../../template/alert'
+import If from '../../template/if'
 
 import Contact from "./contact";
 
@@ -22,6 +24,8 @@ export default class EditContact extends Contact {
                 let data = resp.data;
 
                 this.refresh(data);
+
+                this.setState({...this.state, isLoading: false})
             });
     }
 
@@ -75,24 +79,26 @@ export default class EditContact extends Contact {
                     message={this.state.redirect.message}
                     handleCloseAlert={() => this.handleCloseAlert()}/>
                 <form onSubmit={(e) => this.handleSubmit(e)} className="contact-form" method="POST">
-                    <FirstName
-                        field={this.state.contact.first_name}
-                        handleInputChange={this.handleInputChange}
-                    />
-                    <LastName
-                        field={this.state.contact.last_name}
-                        handleInputChange={this.handleInputChange}
-                    />
-                    <Email
-                        field={this.state.contact.email}
-                        handleInputChange={this.handleInputChange}
-                    />
-                    <PhoneNumber
-                        field={this.state.contact.phone_number}
-                        handleInputChange={this.handleInputChange}
-                    />
-                    <button onSubmit={(e) => this.handleSubmit(e)} type="submit" className="btn btn-success" disabled={!this.canSubmit()}>Update</button>
-                    <Link to='/contacts' className="btn btn-primary">Close</Link>
+                    <If test={!this.state.isLoading}>
+                        <FirstName
+                            field={this.state.contact.first_name}
+                            handleInputChange={this.handleInputChange}
+                        />
+                        <LastName
+                            field={this.state.contact.last_name}
+                            handleInputChange={this.handleInputChange}
+                        />
+                        <Email
+                            field={this.state.contact.email}
+                            handleInputChange={this.handleInputChange}
+                        />
+                        <PhoneNumber
+                            field={this.state.contact.phone_number}
+                            handleInputChange={this.handleInputChange}
+                        />
+                        <button onSubmit={(e) => this.handleSubmit(e)} type="submit" className="btn btn-success" disabled={!this.canSubmit()}>Update</button>
+                        <Link to='/contacts' className="btn btn-primary">Close</Link>
+                    </If>
                 </form>
             </main>
         )

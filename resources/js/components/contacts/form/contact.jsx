@@ -6,6 +6,7 @@ export default class Contact extends Component {
         super(props);
 
         this.state = {
+            isLoading: true,
             redirect: {
                 url: null,
                 message: ''
