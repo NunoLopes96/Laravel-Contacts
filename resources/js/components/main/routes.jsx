@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Redirect, Route, Switch } from "react-router-do
 const CreateContact = lazy(() => import(/* webpackChunkName: 'CreateContact' */ "../contacts/form/contactscreate"));
 const EditContact   = lazy(() => import(/* webpackChunkName: 'EditContact' */ "../contacts/form/contactsedit"));
 const ContactLists  = lazy(() => import(/* webpackChunkName: 'ContactLists' */ "../contacts/list/contactslist"));
+const Error         = lazy(() => import(/* webpackChunkName: 'Error' */ "../template/error"));
 
 export default props => (
     <Router>
@@ -12,6 +13,7 @@ export default props => (
                 <Route exact path='/contacts' component={ContactLists} />
                 <Route path='/contacts/create' component={CreateContact} />
                 <Route path='/contacts/:id/edit' component={EditContact} />
+                <Route path="" component={Error} />
             </Switch>
         </Suspense>
     </Router>
