@@ -1,10 +1,19 @@
 import React, {Component} from "react";
 
+/**
+ * Parent Contact class that will handle common operations between
+ * editing and creating a contact.
+ */
 export default class Contact extends Component {
 
+    /**
+     * Parent Contact class constructor.
+     * @param props
+     */
     constructor(props) {
         super(props);
 
+        // Sets initial state.
         this.state = {
             error: null,
             isLoading: true,
@@ -32,6 +41,7 @@ export default class Contact extends Component {
             },
         };
 
+        // Check if there are any alerts (ex: Redirect from Create View).
         if (this.props.location.state) {
             this.state.alert.message = this.props.location.state.message;
         }
@@ -43,6 +53,10 @@ export default class Contact extends Component {
         this.canSubmit         = this.canSubmit.bind(this);
     }
 
+    /**
+     * Handles an input change.
+     * @param event
+     */
     handleInputChange(event) {
         const target = event.target;
         const value = target.value;
@@ -60,14 +74,27 @@ export default class Contact extends Component {
         });
     }
 
+    /**
+     * Checks if the form can be summited.
+     * The fields must be different from the initial and they all should be valid.
+     * @return {boolean}
+     */
     canSubmit() {
         return this.stateChanged() && this.allFieldsValid();
     }
 
+    /**
+     * Checks if the fields were changed.
+     * @return {boolean}
+     */
     stateChanged() {
         return JSON.stringify(this.state.contact) !== this._initialState;
     }
 
+    /**
+     * Checks if all fields are valid.
+     * @return {boolean}
+     */
     allFieldsValid() {
         let contact = this.state.contact;
 
@@ -76,10 +103,16 @@ export default class Contact extends Component {
                       .some(field => !field.valid);
     };
 
+    /**
+     * Closes the success alert.
+     */
     handleCloseMessage() {
         this.setState({...this.state, alert: {...this.state.alert, message: ''}});
     }
 
+    /**
+     * Close the error alert.
+     */
     handleCloseErrors() {
         this.setState({...this.state, alert: {...this.state.alert, errors: null}});
     }
