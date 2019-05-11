@@ -9,6 +9,7 @@ import PhoneNumber from './fields/PhoneNumber'
 
 import Alert from '../../template/alert'
 import If from '../../template/if'
+import Error from '../../template/error'
 
 import Contact from "./contact";
 
@@ -20,13 +21,16 @@ export default class EditContact extends Contact {
         this._id = this.props.match.params.id;
 
         axios.get(`/api/contacts/${this._id}/edit`)
-            .then((resp) => {
-                let data = resp.data;
+             .then((resp) => {
+                 let data = resp.data;
 
-                this.refresh(data);
+                 this.refresh(data);
 
-                this.setState({...this.state, isLoading: false})
-            });
+                 this.setState({...this.state, isLoading: false})
+             })
+             .catch(error => {
+                 this.setState({...this.state, error: error })
+             });
     }
 
     refresh(data) {
@@ -74,6 +78,10 @@ export default class EditContact extends Contact {
     }
 
     render() {
+        if (this.state.error) {
+            return <Error code={this.state.error.response.status} message={this.state.error.statusText}/>;
+        }
+
         return (
             <main className="container py-4">
                 <Alert
