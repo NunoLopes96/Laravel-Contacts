@@ -13,8 +13,18 @@ import Error from '../../template/error'
 
 import Contact from "./contact";
 
+/**
+ * This class will handle the edition of a contact, validating all its data
+ * before submitting an update and handle validation errors in real time.
+ * The user won't be able to submit an update request if any field is invalid or
+ * if the fields haven't changed.
+ */
 export default class EditContact extends Contact {
 
+    /**
+     * Edit Contact constructor.
+     * @param props
+     */
     constructor(props) {
         super(props);
 
@@ -33,6 +43,11 @@ export default class EditContact extends Contact {
              });
     }
 
+    /**
+     * Refresh the contact fields, after an update or to
+     * fill initially the fields.
+     * @param data
+     */
     refresh(data) {
         let contact = this.state.contact;
 
@@ -48,20 +63,34 @@ export default class EditContact extends Contact {
         this.setState({...this.state, contact: contact});
     }
 
+    /**
+     * Handles the submission of the form, preventing the submission if
+     * any fields are invalid or if there is nothing to update.
+     * @param e
+     */
     handleSubmit(e) {
+        // Prevents the default submission.
         e.preventDefault();
+
+        // Blurs the activeElement in case that is the submit button.
         document.activeElement.blur();
 
+        // Cancels the submission if any fields are invalid or
+        // there is nothing to update.
         if (!this.canSubmit()) {
             return;
         }
 
+        // Collects the data from the form.
         let payload = {};
         Object.keys(this.state.contact).map((key) => {
             payload[key] = this.state.contact[key].value;
         });
+
+        // Laravel can't handle PUT submission, so we have to send a token.
         payload._method = 'PUT';
 
+        // Try to update the contact.
         axios.put(`/api/contacts/${this._id}`, payload)
              .then((resp) => {
                  let data = resp.data;
@@ -78,8 +107,10 @@ export default class EditContact extends Contact {
     }
 
     render() {
+        // If there was an error for example contact was not found or no permissions to see the contact,
+        // we will display an error page.
         if (this.state.error) {
-            return <Error code={this.state.error.response.status} message={this.state.error.statusText}/>;
+            return <Error code={this.state.error.response.status} message={'Contact ' + this.state.error.response.statusText}/>;
         }
 
         return (

@@ -4,8 +4,16 @@ import axios from "axios/index";
 
 import Alert from '../../template/alert';
 
+/**
+ * This class will handle the listing of contacts showing their information
+ * and handle actions like Edit/Delete.
+ */
 export default class ListContacts extends Component {
 
+    /**
+     * Contacts List constructor.
+     * @param props
+     */
     constructor(props) {
         super(props);
         this.state = {
@@ -18,6 +26,9 @@ export default class ListContacts extends Component {
         this.refresh();
     }
 
+    /**
+     * Refreshes the list of contacts.
+     */
     refresh() {
         axios.get("/api/contacts")
              .then((resp) => {
@@ -25,6 +36,11 @@ export default class ListContacts extends Component {
              });
     }
 
+    /**
+     * Handle a contact delete, asking confirmation before to the user.
+     * @param e
+     * @param contact
+     */
     handleDelete(e, contact) {
         // If the user doesn't confirm, prevent to submit and blur the button.
         if (confirm('Are you sure you want to delete this contact?')) {
@@ -38,10 +54,17 @@ export default class ListContacts extends Component {
         }
     }
 
-    handleCloseAlert() {
+    /**
+     * Close the success alert.
+     */
+    handleCloseMessage() {
         this.setState({...this.state, alert: {message: ''}});
     }
 
+    /**
+     * Render the list of contacts.
+     * @return {any[]}
+     */
     returnList() {
         return this.state.contacts.map(contact => (
             <li key={contact.id} className="list-group-item">
@@ -66,7 +89,7 @@ export default class ListContacts extends Component {
             <main className="container py-4">
                 <Alert
                     message={this.state.alert.message}
-                    handleCloseAlert={() => this.handleCloseAlert()}/>
+                    handleCloseMessage={() => this.handleCloseMessage()}/>
                 <div className="clearfix">
                     <Link to='/contacts/create' className="btn btn-outline-success float-right my-2">
                         <i className="fa fa-plus"></i> Create new contact

@@ -10,7 +10,6 @@ import axios from "axios/index";
 import Contact from "./contact";
 
 import Alert from '../../template/alert'
-import If from '../../template/if'
 
 export default class CreateContact extends Contact {
 
